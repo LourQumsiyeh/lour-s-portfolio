@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Lour Qumsiyeh | Software Engineering Student</title>
+  <link rel="icon" type="image/png" href="images/lourlogo.jpg">
+  <meta name="description" content="Portfolio of Lour Qumsiyeh, software engineering student.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+  <header>
+    <nav class="wrap">
+      <a class="logo" href="#home">Lour Qumsiyeh</a>
+      <input type="checkbox" id="menu" class="sr" aria-label="Open menu">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <label class="burger" for="menu">Menu</label>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME / HERO: the page is pinned while you scroll, and your name zooms past you -->
+    <section id="home" class="hero">
+      <div class="hero-pin">
+        <p class="eyebrow">Software engineering student</p>
+        <h1>Lour Qumsiyeh</h1>
+        <p class="lead">I build clean, easy-to-use websites, and I'm easy to work with.</p>
+        <p class="scroll-cue">Scroll &darr;</p>
+      </div>
+    </section>
+
+    <!-- ABOUT: a name badge hanging on a lanyard. Press the left, right or bottom of the badge, pull, then let go. -->
+    <section id="about" class="wrap about">
+      <div class="about-text">
+        <p class="eyebrow">A little about me</p>
+        <h2>About</h2>
+        <p>I'm a software engineering student who enjoys the space where technology meets people. I like turning ideas
+          into clear, useful digital experiences—from thoughtful interface design to structured code and databases. I
+          bring curiosity, a collaborative mindset, and an eye for the details that make a product feel polished.</p>
+        <ul class="facts">
+          <li><b>Build</b>with purpose</li>
+          <li><b>Design</b>for people</li>
+          <li><b>Learn</b>by doing</li>
+        </ul>
+        <p class="hint">Curious by nature. Detail-minded by choice.</p>
+      </div>
+
+      <div class="lanyard"
+        aria-label="Name badge on a lanyard. Press and hold the left, right or bottom of the badge to pull it.">
+        <span class="zone z-left" aria-hidden="true"></span>
+        <span class="zone z-right" aria-hidden="true"></span>
+        <span class="zone z-down" aria-hidden="true"></span>
+        <span class="pin" aria-hidden="true"></span>
+        <div class="swing">
+          <div class="sway">
+            <div class="strap"></div>
+            <div class="clip"></div>
+            <div class="holder">
+              <div class="id">
+                <p class="id-head">Software Engineering</p>
+                <figure class="pic"><img src="images/lour.png" alt="A picture of Lour "></figure>
+                <h3>Lour Qumsiyeh</h3>
+                <p class="id-role">Software Engineering Student</p>
+                <small>BUILDING THOUGHTFUL DIGITAL EXPERIENCES</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS: scrolling down slides the skills sideways -->
+    <section id="skills" class="hscroll">
+      <div class="hs-pin">
+        <div class="wrap hs-head">
+          <h2>Skills</h2>
+          <p class="hint">Keep scrolling.</p>
+        </div>
+        <ul class="hs-track">
+          <li><span class="num">01 / FRONT END</span><span class="skill-icon"><img src="images/skills/html-css.svg"
+                alt="HTML5 and CSS3 logo" loading="lazy"></span><b>HTML &amp; CSS</b><small>Responsive layouts · Flexbox
+              · Grid</small></li>
+          <li><span class="num">02 / PROGRAMMING</span><span class="skill-icon"><img src="images/skills/java.svg"
+                alt="Java logo" loading="lazy"></span><b>Java</b><small>Object-oriented programming · Data
+              structures</small></li>
+          <li><span class="num">03 / DESIGN</span><span class="skill-icon"><img src="images/skills/figma.svg"
+                alt="Figma-style UI UX logo" loading="lazy"></span><b>UI / UX</b><small>User-focused layouts · Usability
+              · Prototyping</small></li>
+          <li><span class="num">04 / DATABASES</span><span class="skill-icon"><img src="images/skills/mysql.svg"
+                alt="MySQL logo" loading="lazy"></span><b>MySQL</b><small>SQL queries · Joins · Database design</small>
+          </li>
+          <li><span class="num">05 / DATABASE TOOLS</span><span class="skill-icon"><img src="images/skills/navicat.svg"
+                alt="Navicat logo" loading="lazy"></span><b>Navicat</b><small>Database management and query
+              workflows</small></li>
+          <li><span class="num">06 / NETWORKING</span><span class="skill-icon"><img
+                src="images/skills/packet-tracer.svg" alt="Packet Tracer logo" loading="lazy"></span><b>Packet
+              Tracer</b><small>Network topologies · Routing fundamentals</small></li>
+          <li><span class="num">07 / COLLABORATION</span><span class="skill-icon"><img src="images/skills/github.svg"
+                alt="GitHub logo" loading="lazy"></span><b>Git &amp; GitHub</b><small>Version control · Team
+              workflows</small></li>
+          <li>
+            <span class="num">08 / DESKTOP DEVELOPMENT</span>
+            <span class="skill-icon">
+              <img src="images/skills/javafx.png" alt="JavaFX logo" loading="lazy">
+            </span>
+            <b>JavaFX</b>
+            <small>GUI development · Desktop applications</small>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="wrap">
+      <h2>Projects</h2>
+      <div class="stack">
+        <article class="project">
+          <figure><img src="images/pctracer.png" alt="Networking project"></figure>
+          <div class="p-body">
+            <span class="num">01</span>
+            
+<h3>Caritas Baby Hospital — Network Design</h3>
+<p>A computer networking project focused on designing a hospital network using Cisco Packet Tracer.</p>
+<dl>
+  <div>
+    <dt>Built with</dt>
+    <dd>Cisco Packet Tracer · Computer Networking · TCP/IP</dd>
+  </div>
+  <div>
+    <dt>My role</dt>
+    <dd>Network topology design and configuration</dd>
+  </div>
+  <div>
+    <dt>What I learned</dt>
+    <dd>Connecting network devices and understanding how computers communicate across a network.</dd>
+  </div>
+</dl>
+```
+              </div>
+            </dl>
+          </div>
+        </article>
+        <article class="project second-project">
+          <figure><img src="images/second-project.png" alt="javafx project"></figure>
+          <div class="p-body">
+            <span class="num">02</span>
+            <h3>Byte &amp; Bite</h3>
+            <p>A modern restaurant application designed to make browsing food products and exploring menu categories
+              simple and enjoyable.</p>
+            <dl>
+              <div>
+                <dt>Built with</dt>
+                <dd>Java, JavaFX</dd>
+              </div>
+              <div>
+                <dt>My role</dt>
+                <dd>UI design and application development</dd>
+              </div>
+              <div>
+                <dt>What I learned</dt>
+                <dd>Building interactive desktop interfaces and organizing application data.</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="wrap card contact">
+      <div>
+        <p class="eyebrow">Have a project in mind?</p>
+        <h2>Let's talk.</h2>
+        <ul class="contact-list">
+          <li><span>Email</span><a href="mailto:lourqumsyeh@gmail.com">lourqumsyeh@gmail.com</a></li>
+          <li><span>LinkedIn</span><a href="https://ps.linkedin.com/in/lour-qumsiyeh-61469b352" target="_blank"
+              rel="noopener">Lour Qumsiyeh</a></li>
+          <li><span>GitHub</span><a href="https://github.com/LourQumsiyeh" target="_blank"
+              rel="noopener">github.com/LourQumsiyeh</a></li>
+        </ul>
+      </div>
+      <div class="contact-content">
+        <p class="lead">Send me a message.</p>
+        <form class="contact-form" action="https://formsubmit.co/lourqumsyeh@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New message from your portfolio">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <input
+  type="hidden"
+  name="_next"
+  value="https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/#contact"
+>
+          <label for="contact-name">Your name
+            <input id="contact-name" type="text" name="name" placeholder="Name" required>
+          </label>
+          <label for="contact-email">Your email
+            <input id="contact-email" type="email" name="email" placeholder="you@example.com" required>
+          </label>
+          <label for="contact-message">Message
+            <textarea id="contact-message" name="message" placeholder="Tell me a little about what you have in mind..."
+              required></textarea>
+          </label>
+          <button type="submit">Send message ↗</button>
+          
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>&copy; 2026 Lour Qumsiyeh. Made by hand with HTML &amp; CSS.</p>
+    <a href="#home">Back to top</a>
+  </footer>
+</body>
+
+</html>

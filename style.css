@@ -1,0 +1,927 @@
+/* ===== 1. VARIABLES: charcoal, cream, and a restrained coral accent ===== */
+:root {
+  --bg: #0a0a0a;
+  --card: #121212;
+  --cream: #efe6d4;
+  --muted: #9a9388;
+  --line: rgba(239, 230, 212, .18);
+  --accent: #ff8066;
+  --accent-soft: rgba(255, 128, 102, .12);
+  --serif: "Cormorant Garamond", Georgia, serif;
+}
+
+/* ===== 2. BASE ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  overflow-x: clip;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--cream);
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: .95;
+  letter-spacing: -.01em;
+}
+
+h2 {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  margin-bottom: 2rem;
+}
+
+h2::before {
+  counter-increment: sec;
+  content: "0" counter(sec);
+  display: block;
+  margin-bottom: .75rem;
+  font: 400 .8rem "Inter", sans-serif;
+  letter-spacing: .2em;
+  color: var(--muted);
+}
+
+main {
+  counter-reset: sec;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(.45) contrast(1.05);
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.wrap {
+  width: min(1100px, 100% - 2.5rem);
+  margin: 0 auto;
+}
+
+section {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* ===== 3. NAVBAR (Flexbox) ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(10, 10, 10, .88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+/* leaves room for the pull cord */
+.logo {
+  font: italic 500 1.5rem var(--serif);
+  text-decoration: none;
+}
+
+.logo::first-letter {
+  color: inherit;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  font-size: .9rem;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: var(--muted);
+  padding-bottom: 3px;
+  background: linear-gradient(var(--cream), var(--cream)) left bottom/0 1px no-repeat;
+  transition: color .3s, background-size .3s;
+}
+
+nav ul a:hover {
+  color: var(--accent);
+  background-size: 100% 1px;
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+  padding: .4rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: .85rem;
+}
+
+body:has(#menu:focus-visible) .burger {
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
+}
+
+/* ===== 4. CARD (the black slide look) ===== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: clamp(1.5rem, 5vw, 4rem);
+  margin-top: 2rem;
+}
+
+/* ===== 5. HERO: you scroll *through* your name ===== */
+.hero-pin {
+  min-height: 85vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.25rem;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: .8rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero h1 {
+  font-size: clamp(3.2rem, 13vw, 11rem);
+}
+
+.lead {
+  font: italic 500 clamp(1.3rem, 2.6vw, 1.8rem)/1.3 var(--serif);
+  color: var(--cream);
+  max-width: 28ch;
+}
+
+.scroll-cue {
+  margin-top: 1rem;
+  font-size: .75rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@supports (animation-timeline:scroll()) {
+  .hero {
+    height: 200vh;
+  }
+
+  /* 100vh of extra scrolling while the hero stays pinned */
+  .hero-pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .hero h1 {
+    transform-origin: 17% 55%;
+    animation: dive linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 100vh;
+  }
+
+  /* progress = how far you scrolled */
+  .hero .eyebrow,
+  .hero .lead,
+  .scroll-cue {
+    animation: fade-out linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 35vh;
+  }
+
+  @keyframes dive {
+    50% {
+      transform: scale(4);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(30);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+/* ===== 6. ABOUT: interactive ID card + profile snapshot ===== */
+.about {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-text p:not(.hint) {
+  font: 500 clamp(1.2rem, 2.2vw, 1.55rem)/1.5 var(--serif);
+  max-width: 34ch;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  margin-top: 1.75rem;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.facts b {
+  display: block;
+  font: 500 1.9rem/1.1 var(--serif);
+  color: var(--accent);
+}
+
+.hint {
+  margin-top: 2rem;
+  font: italic 500 1.1rem var(--serif);
+  color: var(--muted);
+}
+
+.lanyard {
+  position: relative;
+  justify-self: center;
+  width: 300px;
+  height: 690px;
+}
+
+.pin {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 6;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+/* .swing is the part that rotates around the pin (like a pendulum) */
+.swing,
+.sway {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 9px;
+}
+
+/* LET GO: the card swings back with a damped spring. First line = fallback, second = real spring. */
+.swing {
+  transition: transform 1.6s cubic-bezier(.3, 1.8, .5, 1);
+  transition: transform 2.8s linear(0, .18 4%, .52 9%, .92 14%, 1.28 19%, 1.5 23%, 1.52 26%, 1.4 30%, 1.1 35%, .8 40%, .62 44%, .56 47%, .62 51%, .8 56%, .98 61%, 1.12 66%, 1.16 69%, 1.12 73%, 1.02 78%, .94 83%, .92 86%, .96 91%, 1.02 95%, 1);
+}
+
+/* idle: it hangs and sways gently on its own */
+.sway {
+  animation: sway 6s ease-in-out infinite;
+}
+
+@keyframes sway {
+
+  0%,
+  100% {
+    transform: rotate(-1.6deg);
+  }
+
+  50% {
+    transform: rotate(1.6deg);
+  }
+}
+
+.strap {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 34px;
+  height: 150px;
+  margin-left: -17px;
+  background: var(--cream);
+  border-inline: 1px solid rgba(0, 0, 0, .25);
+}
+
+.strap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 1.5px dashed rgba(0, 0, 0, .35);
+}
+
+/* stitching */
+.clip {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  width: 30px;
+  height: 58px;
+  margin-left: -15px;
+  border-radius: 10px 10px 14px 14px;
+  background: linear-gradient(145deg, #ececec, #7a7a7a);
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, .22);
+}
+
+.clip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  border: 4px solid #bdbdbd;
+  border-radius: 50%;
+}
+
+.holder {
+  position: absolute;
+  top: 198px;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  border-radius: 20px;
+  background: linear-gradient(160deg, #f2a18b, #c86d5d);
+  box-shadow: 0 24px 44px rgba(0, 0, 0, .55);
+}
+
+.holder::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed rgba(0, 0, 0, .33);
+  border-radius: 13px;
+  pointer-events: none;
+}
+
+/* leather stitching */
+.holder::after {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  width: 30px;
+  height: 22px;
+  margin-left: -15px;
+  background: #d3c4a4;
+  border-radius: 6px 6px 0 0;
+  z-index: -1;
+}
+
+.id {
+  position: absolute;
+  inset: 34px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+  
+  margin-bottom: 10px;
+}
+
+.id-head {
+  align-self: stretch;
+  height: 36%;
+  padding-top: 1.1rem;
+  background: #25201f;
+  color: #fff;
+  font-size: .62rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+
+.pic {
+  flex: none;
+  width: 112px;
+  aspect-ratio: 1;
+  margin-top: -56px;
+  overflow: hidden;
+  border: 4px solid var(--accent);
+  border-radius: 999px 999px 10px 10px;
+  background: #ddd;
+  height: 200px;
+  width: 200px;
+  margin-bottom: 15px;
+
+}
+
+.pic img {
+  filter: none;
+  object-position: center 70%;
+}
+
+.id h3 {
+  margin-top: 1rem;
+  font-size: 1.7rem;
+}
+
+.id-role {
+  margin-top: .35rem;
+  font-size: .78rem;
+  color: #444;
+}
+
+.id small {
+  margin-top: auto;
+  padding: 1rem;
+  font-size: .68rem;
+  letter-spacing: .1em;
+  color: #777;
+}
+
+/* invisible pull zones (they stay still while the badge moves) */
+.zone {
+  position: absolute;
+  z-index: 4;
+  cursor: grab;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.zone:active {
+  cursor: grabbing;
+}
+
+.z-left {
+  top: 200px;
+  bottom: 0;
+  left: 20px;
+  width: 130px;
+}
+
+.z-right {
+  top: 200px;
+  bottom: 0;
+  right: 20px;
+  width: 130px;
+}
+
+.z-down {
+  left: 85px;
+  right: 85px;
+  bottom: 0;
+  height: 130px;
+  z-index: 5;
+}
+
+/* PRESS: pull the badge to that side (fast), or stretch it down */
+.lanyard:has(.z-left:active) .swing {
+  transform: rotate(17deg);
+  transition: transform .35s ease-out;
+}
+
+.lanyard:has(.z-right:active) .swing {
+  transform: rotate(-17deg);
+  transition: transform .35s ease-out;
+}
+
+.lanyard:has(.z-down:active) .swing {
+  transform: scale(.97, 1.1);
+  transition: transform .35s ease-out;
+}
+
+/* ===== 7. SKILLS: icon-led skill cards ===== */
+.hs-head {
+  margin-bottom: 1.5rem;
+}
+
+.hs-track {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 5vw 3rem;
+  overflow-x: auto;
+}
+
+.hs-track li {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: min(78vw, 440px);
+  aspect-ratio: 4/5;
+  max-height: 60vh;
+  padding: 2rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  transition: transform .3s, border-color .3s;
+}
+
+.hs-track li:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  background: linear-gradient(145deg, var(--accent-soft), var(--card) 60%);
+}
+
+.hs-track .skill-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1.4rem;
+  border: 1px solid rgba(255, 128, 102, .45);
+  border-radius: 18px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.skill-icon img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
+}
+
+.hs-track small {
+  margin-top: .7rem;
+}
+
+.hs-track .num {
+  margin-bottom: auto;
+  font-size: .8rem;
+  letter-spacing: .2em;
+  color: var(--muted);
+}
+
+.hs-track b {
+  margin-top: .5rem;
+  font: 500 clamp(2.6rem, 6vw, 4.2rem)/1 var(--serif);
+}
+
+.hs-track small {
+  color: var(--muted);
+}
+
+@supports (animation-timeline:view()) {
+  .hscroll {
+    height: 400vh;
+    view-timeline: --h block;
+  }
+
+  /* a named timeline: how far this section has travelled through the screen */
+  .hs-pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hs-track {
+    overflow: visible;
+    width: max-content;
+    animation: hslide linear both;
+    animation-timeline: --h;
+    animation-range: cover 20% cover 80%;
+  }
+
+  /* only while pinned */
+  @keyframes hslide {
+    to {
+      transform: translateX(calc(-100% + 100vw));
+    }
+  }
+}
+
+/* ===== 8. PROJECTS: cards that stack on top of each other ===== */
+.stack {
+  margin-top: 1.5rem;
+}
+
+.project {
+  position: sticky;
+  top: 6rem;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 2.5rem;
+  margin-bottom: 14vh;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  box-shadow: 0 -24px 40px rgba(0, 0, 0, .6);
+}
+
+.second-project img {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+
+/* sticks a little lower, so the first card peeks out above it */
+.project figure {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.project img {
+  transition: transform .6s, filter .6s;
+}
+
+.project:hover img {
+  transform: scale(1.05);
+  filter: none;
+}
+
+.p-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.p-body .num {
+  font-size: .8rem;
+  letter-spacing: .2em;
+  color: var(--muted);
+}
+
+.project h3 {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+}
+
+.project p {
+  color: var(--muted);
+  max-width: 40ch;
+}
+
+.project dl {
+  margin-top: 1rem;
+}
+
+.project dl div {
+  padding: .8rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.project dt {
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project dd {
+  font: 500 1.25rem/1.35 var(--serif);
+}
+
+/* ===== 9. CONTACT + FOOTER ===== */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.contact h2 {
+  margin: 0;
+}
+
+.contact h2::before {
+  content: none;
+}
+
+.contact-list li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-list span {
+  color: var(--muted);
+}
+
+.contact-list a {
+  text-decoration: none;
+  transition: letter-spacing .3s;
+  word-break: break-word;
+}
+
+.contact-list a:hover {
+  letter-spacing: .04em;
+}
+
+.contact-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: .4rem;
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #0e0e0e;
+  color: var(--cream);
+  padding: .9rem 1rem;
+  font: inherit;
+  border-radius: 4px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 1px solid var(--accent);
+  border-color: var(--accent);
+}
+
+.contact-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.contact-form button {
+  justify-self: start;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #17100e;
+  padding: .8rem 1.2rem;
+  font: inherit;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  background: #ff9a84;
+}
+
+.form-note {
+  color: var(--muted);
+  font-size: .75rem;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2.5rem 0 3rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+/* ===== 10. RESPONSIVE ===== */
+@media (max-width:800px) {
+
+  .about,
+  .contact,
+  .project {
+    grid-template-columns: 1fr;
+  }
+
+  .project {
+    position: static;
+    margin-bottom: 2rem;
+  }
+
+  .portrait {
+    max-width: 340px;
+    margin-inline: auto 14px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+
+  .burger {
+    display: inline-block;
+  }
+
+  nav ul {
+    display: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  #menu:checked~ul {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .sway {
+    animation: none;
+  }
+
+  .lanyard .swing {
+    transform: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* people who ask for less motion get the normal, un-pinned layout */
+@media (prefers-reduced-motion:reduce) {
+  .hero {
+    height: auto;
+  }
+
+  .hero-pin {
+    position: static;
+    height: auto;
+    min-height: 80vh;
+  }
+
+  .hscroll {
+    height: auto;
+  }
+
+  .hs-pin {
+    position: static;
+    height: auto;
+  }
+
+  .hs-track {
+    width: auto;
+    overflow-x: auto;
+    transform: none;
+  }
+}
