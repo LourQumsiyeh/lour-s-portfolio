@@ -4,9 +4,9 @@
   --card: #121212;
   --cream: #efe6d4;
   --muted: #9a9388;
-  --line: rgba(239, 230, 212, .18);
-  --accent: #ff8066;
-  --accent-soft: rgba(255, 128, 102, .12);
+   --line: rgba(197, 173, 131, .22);
+--accent: #C5AD83;
+--accent-soft: rgba(197, 173, 131, .12);
   --serif: "Cormorant Garamond", Georgia, serif;
 }
 
@@ -118,6 +118,7 @@ nav {
 .logo {
   font: italic 500 1.5rem var(--serif);
   text-decoration: none;
+  
 }
 
 .logo::first-letter {
@@ -394,7 +395,9 @@ body:has(#menu:focus-visible) .burger {
   right: 20px;
   bottom: 0;
   border-radius: 20px;
-  background: linear-gradient(160deg, #f2a18b, #c86d5d);
+
+background: linear-gradient(135deg, #D4C3A3, #B39A70, #806947);
+
   box-shadow: 0 24px 44px rgba(0, 0, 0, .55);
 }
 
@@ -416,7 +419,7 @@ body:has(#menu:focus-visible) .burger {
   width: 30px;
   height: 22px;
   margin-left: -15px;
-  background: #d3c4a4;
+  background:#D4AF37;
   border-radius: 6px 6px 0 0;
   z-index: -1;
 }
@@ -575,7 +578,7 @@ body:has(#menu:focus-visible) .burger {
   width: 64px;
   height: 64px;
   margin-bottom: 1.4rem;
-  border: 1px solid rgba(255, 128, 102, .45);
+  border: 1px solid rgba(212, 175, 55, .45);
   border-radius: 18px;
   background: var(--accent-soft);
   color: var(--accent);
@@ -815,7 +818,7 @@ body:has(#menu:focus-visible) .burger {
 
 .contact-form button:hover {
   transform: translateY(-2px);
-  background: #ff9a84;
+  background: #E8D48B;
 }
 
 .form-note {
